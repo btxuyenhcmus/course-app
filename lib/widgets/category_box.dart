@@ -3,7 +3,8 @@ import 'package:flutter_application_1/theme/color.dart';
 import 'package:flutter_svg/svg.dart';
 
 class CategoryBox extends StatelessWidget {
-  const CategoryBox({super.key});
+  const CategoryBox({super.key, required this.data});
+  final data;
 
   @override
   Widget build(BuildContext context) {
@@ -23,12 +24,25 @@ class CategoryBox extends StatelessWidget {
               ),
             ],
           ),
-          child: SvgPicture.asset("assets/icons/categories/all.svg"),
+          child: SvgPicture.asset(
+            data["icon"],
+            width: 30,
+            height: 30,
+            color: AppColor.textColor,
+          ),
         ),
         SizedBox(
           height: 10,
         ),
-        Text("Title"),
+        Text(
+          data["name"],
+          maxLines: 1,
+          overflow: TextOverflow.fade,
+          style: TextStyle(
+            color: AppColor.textColor,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ],
     );
   }
