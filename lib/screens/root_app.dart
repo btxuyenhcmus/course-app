@@ -36,34 +36,26 @@ class _RootAppState extends State<RootApp> {
     },
     {
       "icon": "assets/icons/search.svg",
-      "page": Container(
-        child: Center(
-          child: Text("Search"),
-        ),
+      "page": Center(
+        child: Text("Search"),
       ),
     },
     {
       "icon": "assets/icons/play.svg",
-      "page": Container(
-        child: Center(
-          child: Text("My Course"),
-        ),
+      "page": Center(
+        child: Text("My Course"),
       ),
     },
     {
       "icon": "assets/icons/chat.svg",
-      "page": Container(
-        child: Center(
-          child: Text("Chat"),
-        ),
+      "page": Center(
+        child: Text("Chat"),
       ),
     },
     {
       "icon": "assets/icons/profile.svg",
-      "page": Container(
-        child: Center(
-          child: Text("Profile"),
-        ),
+      "page": Center(
+        child: Text("Profile"),
       ),
     },
   ];
