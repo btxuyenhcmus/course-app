@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/theme/color.dart';
@@ -6,6 +5,7 @@ import 'package:flutter_application_1/utils/data.dart';
 import 'package:flutter_application_1/widgets/category_box.dart';
 import 'package:flutter_application_1/widgets/feature_item.dart';
 import 'package:flutter_application_1/widgets/notification_box.dart';
+import 'package:flutter_application_1/widgets/recommend_item.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -64,7 +64,7 @@ class _HomePageState extends State<HomePage> {
         children: [
           getCategories(),
           Padding(
-            padding: EdgeInsets.fromLTRB(15, 5, 15, 10),
+            padding: EdgeInsets.fromLTRB(15, 15, 15, 10),
             child: Text(
               "Featured",
               style: TextStyle(
@@ -75,7 +75,52 @@ class _HomePageState extends State<HomePage> {
             ),
           ),
           getFeatures(),
+          Padding(
+            padding: EdgeInsets.fromLTRB(15, 25, 15, 15),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  "Recommended",
+                  style: TextStyle(
+                    color: AppColor.textColor,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 22,
+                  ),
+                ),
+                Text(
+                  "See all",
+                  style: TextStyle(
+                    color: AppColor.labelColor,
+                    fontSize: 14,
+                  ),
+                ),
+              ],
+            ),
+          ),
+          getRecommends(),
         ],
+      ),
+    );
+  }
+
+  Widget getRecommends() {
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      padding: EdgeInsets.only(left: 15),
+      child: Row(
+        children: List.generate(
+          recommends.length,
+          (index) => Container(
+            margin: EdgeInsets.only(right: 15, bottom: 5),
+            child: RecommendItem(
+              data: recommends[index],
+              onTab: () {
+                print(index);
+              },
+            ),
+          ),
+        ),
       ),
     );
   }

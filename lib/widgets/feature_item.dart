@@ -1,7 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/theme/color.dart';
-import 'package:flutter_application_1/utils/data.dart';
 
 class FeatureItem extends StatelessWidget {
   const FeatureItem({super.key, required this.data});
