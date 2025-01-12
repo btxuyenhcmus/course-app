@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/screens/explore.dart';
 import 'package:flutter_application_1/screens/home.dart';
 import 'package:flutter_application_1/theme/color.dart';
 import 'package:flutter_application_1/widgets/buttombar_item.dart';
@@ -36,9 +37,7 @@ class _RootAppState extends State<RootApp> {
     },
     {
       "icon": "assets/icons/search.svg",
-      "page": Center(
-        child: Text("Search"),
-      ),
+      "page": ExplorePage(),
     },
     {
       "icon": "assets/icons/play.svg",
