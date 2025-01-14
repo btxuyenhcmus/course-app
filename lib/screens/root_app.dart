@@ -12,6 +12,8 @@ class RootApp extends StatefulWidget {
 }
 
 class _RootAppState extends State<RootApp> {
+  int _activePageIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,7 +24,7 @@ class _RootAppState extends State<RootApp> {
 
   Widget buildBody() {
     return IndexedStack(
-      index: activePageIndex,
+      index: _activePageIndex,
       children: List.generate(
         tabItems.length,
         (index) => tabItems[index]["page"],
@@ -59,7 +61,6 @@ class _RootAppState extends State<RootApp> {
     },
   ];
 
-  int activePageIndex = 0;
   Widget buildBottomBar() {
     return Container(
       width: double.infinity,
@@ -83,31 +84,35 @@ class _RootAppState extends State<RootApp> {
         children: [
           BottomBarItem(
             icon: "assets/icons/home.svg",
-            isActive: true,
+            isActive: _activePageIndex == 0,
             onTap: () {
               onPageIndexChanged(0);
             },
           ),
           BottomBarItem(
             icon: "assets/icons/search.svg",
+            isActive: _activePageIndex == 1,
             onTap: () {
               onPageIndexChanged(1);
             },
           ),
           BottomBarItem(
             icon: "assets/icons/play.svg",
+            isActive: _activePageIndex == 2,
             onTap: () {
               onPageIndexChanged(2);
             },
           ),
           BottomBarItem(
             icon: "assets/icons/chat.svg",
+            isActive: _activePageIndex == 3,
             onTap: () {
               onPageIndexChanged(3);
             },
           ),
           BottomBarItem(
             icon: "assets/icons/profile.svg",
+            isActive: _activePageIndex == 4,
             onTap: () {
               onPageIndexChanged(4);
             },
@@ -117,9 +122,9 @@ class _RootAppState extends State<RootApp> {
     );
   }
 
-  onPageIndexChanged(index) {
+  void onPageIndexChanged(int index) {
     setState(() {
-      activePageIndex = index;
+      _activePageIndex = index;
     });
   }
 }

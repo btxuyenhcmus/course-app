@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/theme/color.dart';
+import 'package:flutter_application_1/widgets/category_item.dart';
 import 'package:flutter_svg/svg.dart';
 
 class ExplorePage extends StatefulWidget {
@@ -22,13 +23,27 @@ class _ExplorePageState extends State<ExplorePage> {
           ),
           SliverToBoxAdapter(
             child: getSearchBox(),
+          ),
+          SliverToBoxAdapter(
+            child: getCategories(),
           )
         ],
       ),
     );
   }
 
-  getAppBar() {
+  getCategories() {
+    return SingleChildScrollView(
+      padding: EdgeInsets.only(left: 15, top: 10),
+      child: Row(
+        children: [
+          CategoryItem(),
+        ],
+      ),
+    );
+  }
+
+  Row getAppBar() {
     return Row(
       children: [
         Text(
@@ -51,6 +66,7 @@ class _ExplorePageState extends State<ExplorePage> {
           Expanded(
             child: Container(
               height: 40,
+              padding: EdgeInsets.only(bottom: 5),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(10),
