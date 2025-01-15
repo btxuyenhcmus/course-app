@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/theme/color.dart';
+import 'package:flutter_application_1/utils/data.dart';
 import 'package:flutter_application_1/widgets/category_item.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -32,13 +33,24 @@ class _ExplorePageState extends State<ExplorePage> {
     );
   }
 
+  int selectedCategoryIndex = 0;
   getCategories() {
     return SingleChildScrollView(
-      padding: EdgeInsets.only(left: 15, top: 10),
+      scrollDirection: Axis.horizontal,
+      padding: EdgeInsets.only(left: 15, top: 10, bottom: 5),
       child: Row(
-        children: [
-          CategoryItem(),
-        ],
+        children: List.generate(
+          categories.length,
+          (index) => CategoryItem(
+            onTap: () {
+              setState(() {
+                selectedCategoryIndex = index;
+              });
+            },
+            data: categories[index],
+            isActive: selectedCategoryIndex == index,
+          ),
+        ),
       ),
     );
   }
