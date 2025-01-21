@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/theme/color.dart';
 import 'package:flutter_application_1/utils/data.dart';
@@ -27,7 +28,10 @@ class _ExplorePageState extends State<ExplorePage> {
           ),
           SliverToBoxAdapter(
             child: getCategories(),
-          )
+          ),
+          SliverList(
+            delegate: getCourses(),
+          ),
         ],
       ),
     );
@@ -53,6 +57,91 @@ class _ExplorePageState extends State<ExplorePage> {
         ),
       ),
     );
+  }
+
+  getCourses() {
+    return SliverChildBuilderDelegate((context, index) {
+      return Padding(
+        padding: const EdgeInsets.only(top: 10, left: 15, right: 15),
+        child: Container(
+          width: 200,
+          height: 290,
+          padding: EdgeInsets.all(10),
+          margin: EdgeInsets.only(top: 5, bottom: 5),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [
+              BoxShadow(
+                color: AppColor.shadowColor.withOpacity(.1),
+                blurRadius: 1,
+                spreadRadius: 1,
+                offset: Offset(1, 1),
+              )
+            ],
+          ),
+          child: Stack(
+            children: [
+              SizedBox(
+                width: double.infinity,
+                height: 200,
+                child: CachedNetworkImage(
+                  imageBuilder: (context, imageProvider) => Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      image: DecorationImage(
+                        image: imageProvider,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  imageUrl: courses[0]["image"],
+                ),
+              ),
+              Positioned(
+                top: 180,
+                right: 15,
+                child: Container(
+                  padding: EdgeInsets.all(5),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColor.shadowColor.withOpacity(.05),
+                        spreadRadius: .5,
+                        blurRadius: .5,
+                        offset: Offset(1, 1),
+                      )
+                    ],
+                  ),
+                  child: SvgPicture.asset(
+                    "assets/icons/bookmark.svg",
+                    color: AppColor.primary,
+                    width: 25,
+                    height: 25,
+                  ),
+                ),
+              ),
+              Positioned(
+                top: 210,
+                child: Column(
+                  children: [
+                    Text(
+                      courses[0]["name"],
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    )
+                  ],
+                ),
+              )
+            ],
+          ),
+        ),
+      );
+    });
   }
 
   Row getAppBar() {
